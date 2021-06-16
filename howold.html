@@ -1,0 +1,130 @@
+<html>
+  <head>
+    <style>
+      body,
+      input,
+      button {
+        font-size: 32px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+      @media (min-width: 800px) {
+        body,
+        input,
+        button {
+          font-size: 64px;
+        }
+      }
+
+      body {
+        text-align: center;
+      }
+      input {
+        width: 200px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      @media (min-width: 800px) {
+        input {
+          width: 400px;
+        }
+      }
+      button {
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+      span {
+        margin: 10px 60px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="" id="form">
+      <span>Digite a sua data de nascimento</span>
+      <input name="" id="data" value="" placeholder="dd/mm/aaaa" />
+      <button id="calcular">Calcular</button>
+    </form>
+    <hr />
+    <span id="resultado"> </span>
+  </body>
+  <script>
+    document.getElementById("form").onsubmit = function(e) {
+      e.preventDefault();
+    };
+
+    document.getElementById("calcular").onclick = function() {
+      var strDate = document.getElementById("data").value;
+      var dateParts = strDate.split("/");
+      var bday = new Date(
+        parseInt(dateParts[2]),
+        parseInt(dateParts[1] - 1),
+        parseInt(dateParts[0])
+      );
+
+      var resultado = document.getElementById("resultado");
+
+      if (!isDateValid(bday)) {
+        resultado.innerHTML = "Data inválida";
+        return;
+      }
+
+      var today = new Date();
+
+      function clear() {
+        resultado.innerHTML = "";
+      }
+
+      function write(label, value) {
+        resultado.innerHTML += "<br>" + label + ": " + value;
+      }
+
+      function isLeapYear(year) {
+        return (0 == year % 4 && 0 != year % 100) || 0 == year % 400;
+      }
+
+      function numLeapYears(bday, today) {
+        var cont = 0;
+        for (var i = bday.getFullYear(); i <= today.getFullYear(); i++) {
+          if (isLeapYear(i)) {
+            cont++;
+          }
+        }
+        return cont;
+      }
+
+      function isDateValid(date) {
+        return date.getTime() === date.getTime();
+      }
+
+      clear();
+      var leapYears = numLeapYears(bday, today);
+      //write("leapYears", leapYears);
+      var anos = today.getFullYear() - bday.getFullYear() - 1;
+      //write("anos", anos);
+      var anosEmDias = leapYears * 366 + (anos - leapYears) * 365;
+      //write("anosEmDias", anosEmDias);
+      var dias = (today - bday) / (1000 * 60 * 60 * 24);
+      //write("dias", dias);
+      var diffDias = dias - anosEmDias;
+      //write("diffDias", diffDias);
+      if (diffDias >= 365) {
+        anos++;
+        diffDias -= 365;
+      }
+      var meses = Math.floor(diffDias / 30);
+      //write("meses", meses);
+      var diasFinal = Math.floor(diffDias % 30);
+      //write("diasFinal", diasFinal);
+
+      resultado.innerHTML +=
+        "<br>Você tem " +
+        anos +
+        " anos e " +
+        meses +
+        " meses e " +
+        diasFinal +
+        " dias";
+    };
+  </script>
+</html>
