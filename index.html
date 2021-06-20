@@ -663,58 +663,58 @@
 
     var tabela2 = [
       {
-        signo: "áries",
+        signo: "áries ♈",
         data1: { dia: 21, mes: 2 },
         data2: { dia: 19, mes: 3 }
       },
       {
-        signo: "touro",
+        signo: "touro ♉",
         data1: { dia: 20, mes: 3 },
         data2: { dia: 20, mes: 4 }
       },
       {
-        signo: "gêmeos",
+        signo: "gêmeos ♊",
         data1: { dia: 21, mes: 4 },
         data2: { dia: 20, mes: 5 }
       },
       {
-        signo: "câncer",
+        signo: "câncer ♋",
         data1: { dia: 21, mes: 5 },
         data2: { dia: 22, mes: 6 }
       },
-      { signo: "leão", data1: { dia: 23, mes: 6 }, data2: { dia: 22, mes: 7 } },
+      { signo: "leão ♌", data1: { dia: 23, mes: 6 }, data2: { dia: 22, mes: 7 } },
       {
-        signo: "virgem",
+        signo: "virgem ♍",
         data1: { dia: 23, mes: 7 },
         data2: { dia: 22, mes: 8 }
       },
       {
-        signo: "libra",
+        signo: "libra ♎",
         data1: { dia: 23, mes: 8 },
         data2: { dia: 22, mes: 9 }
       },
       {
-        signo: "escorpião",
+        signo: "escorpião ♏",
         data1: { dia: 23, mes: 9 },
         data2: { dia: 21, mes: 10 }
       },
       {
-        signo: "sagitário",
+        signo: "sagitário ♐",
         data1: { dia: 23, mes: 10 },
         data2: { dia: 21, mes: 11 }
       },
       {
-        signo: "capricórnio",
+        signo: "capricórnio ♑",
         data1: { dia: 22, mes: 11 },
         data2: { dia: 19, mes: 0 }
       },
       {
-        signo: "aquário",
+        signo: "aquário ♒",
         data1: { dia: 20, mes: 0 },
         data2: { dia: 18, mes: 1 }
       },
       {
-        signo: "peixes",
+        signo: "peixes ♓",
         data1: { dia: 19, mes: 1 },
         data2: { dia: 20, mes: 2 }
       }
@@ -763,6 +763,7 @@
       function isDateValid(date) {
         return date.getTime() === date.getTime();
       }
+      //comitando
 
       clear();
       var leapYears = numLeapYears(bday, today);
@@ -807,7 +808,45 @@
       for (let i = 0; i < tabela.length; i++) {
         if (bday >= tabela[i].data1 && bday <= tabela[i].data2) {
           //console.log("Seu signo chinês é " + tabela[i].signo);
-          resultado.innerHTML += "<br>Seu signo chinês é " + tabela[i].signo;
+          resultado.innerHTML += "<br>Seu signo chinês é " + tabela[i].signo + " ";
+          switch (tabela[i].signo) {
+            case "rato":
+              resultado.innerHTML += "🐭";
+              break;
+            case "boi":
+              resultado.innerHTML += "🐮";
+              break;
+            case "tigre":
+              resultado.innerHTML += "🐯";
+              break;
+            case "coelho":
+              resultado.innerHTML += "🐰";
+              break;
+            case "dragão":
+              resultado.innerHTML += "🐲";
+              break;
+            case "cobra":
+              resultado.innerHTML += "🐍";
+              break;
+            case "cavalo":
+              resultado.innerHTML += "🐴";
+              break;
+            case "cabra":
+              resultado.innerHTML += "🐐";
+              break;
+            case "macaco":
+              resultado.innerHTML += "🐵";
+              break;
+            case "galo":
+              resultado.innerHTML += "🐔";
+              break;
+            case "cachorro":
+              resultado.innerHTML += "🐶";
+              break;
+            case "porco":
+              resultado.innerHTML += "🐷";
+              break;
+          }
           break;
         }
       }
