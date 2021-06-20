@@ -841,7 +841,8 @@
         meses +
         (meses == 1 ? " mês e " : " meses e ") +
         diasFinal +
-        (diasFinal == 1 ? " dia" : " dias");
+        (diasFinal == 1 ? " dia." : " dias.");
+
       var segundos = Math.floor((today - bday) / 1000);
       var segundosString = segundos.toString();
       var segundosStringRev = "";
@@ -855,16 +856,16 @@
         if (i > 0 && i % 3 == 0) segundosFinal += ".";
       }
       resultado.innerHTML +=
-        "<br>Você tem " + segundosFinal + " segundos de vida";
+        "<br>Você tem " + segundosFinal + " segundos de vida.";
 
-      resultado.innerHTML += "<br>Você nasceu em " + calculadiadasemana();
+      resultado.innerHTML += "<br>Você nasceu em " + calculadiadasemana() + ".";
 
       if (tempoFaltando() != 1) {
         resultado.innerHTML +=
-          "<br>Faltam " + tempoFaltando() + " dias para o seu aniversário";
+          "<br>Faltam " + tempoFaltando() + " dias para o seu aniversário.";
       } else {
         resultado.innerHTML +=
-          "<br>Falta " + tempoFaltando() + " dia para o seu aniversário";
+          "<br>Falta " + tempoFaltando() + " dia para o seu aniversário.";
       }
 
       for (let i = 0; i < tabela2.length; i++) {
@@ -874,7 +875,8 @@
           (bday.getMonth() == tabela2[i].data2.mes &&
             bday.getDate() <= tabela2[i].data2.dia)
         ) {
-          resultado.innerHTML += "<br>Seu signo é " + tabela2[i].signo;
+          resultado.innerHTML += "<br>Seu signo é " + tabela2[i].signo + ".";
+          break;
         }
       }
 
@@ -924,6 +926,7 @@
           break;
         }
       }
+      resultado.innerHTML += ".";
 
       var link =
         "https://pt.wikipedia.org/wiki/" +
