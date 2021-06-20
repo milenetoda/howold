@@ -880,7 +880,46 @@
           break;
         }
       }
+
+      var link =
+        "https://pt.wikipedia.org/wiki/" +
+        bday.getDate() +
+        "_de_" +
+        getNomeMes(bday.getMonth());
+      resultado.innerHTML +=
+        "<br><a href='" +
+        link +
+        "' target='blank'>Curiosidades do dia do seu aniversário</a>";
     };
+
+    function getNomeMes(mes) {
+      switch (mes) {
+        case 0:
+          return "janeiro";
+        case 1:
+          return "fevereiro";
+        case 2:
+          return "março";
+        case 3:
+          return "abril";
+        case 4:
+          return "maio";
+        case 5:
+          return "junho";
+        case 6:
+          return "julho";
+        case 7:
+          return "agosto";
+        case 8:
+          return "setembro";
+        case 9:
+          return "outubro";
+        case 10:
+          return "novembro";
+        case 11:
+          return "dezembro";
+      }
+    }
 
     var date = document.getElementById("data");
 
