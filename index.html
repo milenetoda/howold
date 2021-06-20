@@ -789,6 +789,10 @@
         diffDias -= 365;
       }
       var meses = Math.floor(diffDias / 30);
+      if (meses == 12){
+        meses = 0;
+        anos++;
+      }
       //write("meses", meses);
       var diasFinal = Math.floor(diffDias % 30);
       //write("diasFinal", diasFinal);
@@ -812,16 +816,48 @@
         }
       }
 
+      
+      function millisecToDaysFloor(milliseconds) { 
+        return Math.floor((milliseconds) / (60 * 60 * 24 * 1000))
+      }
+
+      function tempoFaltando() {
+        var newbday = new Date(
+          today.getFullYear(),
+          bday.getMonth(),
+          bday.getDate()
+        );
+        var diferença = millisecToDaysFloor(today - newbday);
+        if (diferença > 0) {
+          newbday.setFullYear(today.getFullYear()+1);
+          return millisecToDaysFloor(newbday-today);
+        }
+        return -diferença;
+      }
+
       resultado.innerHTML +=
         "<br>Você tem " +
         anos +
-        " anos e " +
+        (anos==1?" ano e ":" anos e ") +
         meses +
-        " meses e " +
+        (meses==1?" mês e ":" meses e ") +
         diasFinal +
-        " dias" +
+        (diasFinal==1?" dia":" dias")+
         "<br>Você nasceu em " +
         calculadiadasemana();
+        
+        if (tempoFaltando() != 1){
+          resultado.innerHTML +=
+        "<br>Faltam " +
+        tempoFaltando() +
+        " dias para o seu aniversário";
+        } else {
+          resultado.innerHTML +=
+        "<br>Falta " +
+        tempoFaltando() +
+        " dia para o seu aniversário";
+        }
+        
 
       for (let i = 0; i < tabela2.length; i++) {
         if (
