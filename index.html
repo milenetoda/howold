@@ -751,7 +751,7 @@
       }
 
       function write(label, value) {
-        resultado.innerHTML += "<br>" + label + ": " + value;
+        //resultado.innerHTML += "<br>" + label + ": " + value;
       }
 
       function isLeapYear(year) {
@@ -774,45 +774,66 @@
       //comitando
 
       clear();
+      write("today", today);
       var leapYears = numLeapYears(bday, today);
-      //write("leapYears", leapYears);
-      var anos = today.getFullYear() - bday.getFullYear() - 1;
-      //write("anos", anos);
+      write("leapYears", leapYears);
+      var anos = today.getFullYear() - bday.getFullYear();
+      write("anos", anos);
       var anosEmDias = leapYears * 366 + (anos - leapYears) * 365;
-      //write("anosEmDias", anosEmDias);
+      write("anosEmDias", anosEmDias);
       var dias = (today - bday) / (1000 * 60 * 60 * 24);
-      //write("dias", dias);
-      var diffDias = dias - anosEmDias;
-      //write("diffDias", diffDias);
-      if (diffDias >= 365) {
-        anos++;
-        diffDias -= 365;
+      write("dias", dias);
+      
+      var bdaycopy = new Date(bday.getTime());
+      var contador_mes = 0;
+      while(true){
+       bdaycopy.setMonth(bdaycopy.getMonth() + 1);
+       if (bdaycopy > today) break;
+       contador_mes++;
       }
-      var meses = Math.floor(diffDias / 30);
-      if (meses == 12) {
-        meses = 0;
-        anos++;
-      }
-      //write("meses", meses);
-      var diasFinal = Math.floor(diffDias % 30);
-      //write("diasFinal", diasFinal);
+      write("contador de mes", contador_mes);
 
+      bdaycopy.setMonth(bdaycopy.getMonth() -1);
+      var diasFinal = 0;
+      while(true){
+        bdaycopy.setDate(bdaycopy.getDate() + 1)
+       if (bdaycopy > today) break;
+        diasFinal++;
+      }
+
+      var data_do_ano = new Date(bday.getTime());
+      
+      var anosFinal = 0;
+      while(true){
+        data_do_ano.setFullYear(data_do_ano.getFullYear() + 1)
+       if (data_do_ano > today) break;
+       anosFinal++;
+      }
+
+      anos = anosFinal;
+
+      write("diasFinal", diasFinal);
+           
+      meses = contador_mes%12;
+      
+      write("meses", meses);
+   
       function calculadiadasemana() {
         switch (bday.getDay()) {
           case 0:
-            return "um domingo";
+            return "um <b>domingo</b>";
           case 1:
-            return "uma segunda-feira";
+            return "uma <b>segunda-feira</b>";
           case 2:
-            return "uma terça-feira";
+            return "uma <b>terça-feira</b>";
           case 3:
-            return "uma quarta-feira";
+            return "uma <b>quarta-feira</b>";
           case 4:
-            return "uma quinta-feira";
+            return "uma <b>quinta-feira</b>";
           case 5:
-            return "uma sexta-feira";
+            return "uma <b>sexta-feira</b>";
           case 6:
-            return "um sábado";
+            return "um <b>sábado</b>";
         }
       }
 
@@ -835,13 +856,16 @@
       }
 
       resultado.innerHTML +=
-        "<br>Você tem " +
+        "<br>Hoje é " + today.getDate() + "/" + (today.getMonth()+1) + "/" + today.getFullYear();
+
+      resultado.innerHTML +=
+        "<br>Você tem <b>" +
         anos +
-        (anos == 1 ? " ano e " : " anos e ") +
+        (anos == 1 ? "</b> ano e <b>" : "</b> anos e <b>") +
         meses +
-        (meses == 1 ? " mês e " : " meses e ") +
+        (meses == 1 ? "</b> mês e <b>" : "</b> meses e <b>") +
         diasFinal +
-        (diasFinal == 1 ? " dia." : " dias.");
+        (diasFinal == 1 ? "</b> dia." : "</b> dias.");
 
       var segundos = Math.floor((today - bday) / 1000);
       var segundosString = segundos.toString();
@@ -855,17 +879,24 @@
         segundosFinal += segundosStringRev[i];
         if (i > 0 && i % 3 == 0) segundosFinal += ".";
       }
+
       resultado.innerHTML +=
-        "<br>Você tem " + segundosFinal + " segundos de vida.";
+        "<br>Você tem <b>" + contador_mes + "</b> meses de vida.";
+
+      resultado.innerHTML +=
+        "<br>Você tem <b>" + Math.floor(dias) + "</b> dias de vida.";
+
+      resultado.innerHTML +=
+        "<br>Você tem <b>" + segundosFinal + "</b> segundos de vida.";
 
       resultado.innerHTML += "<br>Você nasceu em " + calculadiadasemana() + ".";
 
       if (tempoFaltando() != 1) {
         resultado.innerHTML +=
-          "<br>Faltam " + tempoFaltando() + " dias para o seu aniversário.";
+          "<br>Faltam <b>" + tempoFaltando() + "</b> dias para o seu aniversário.";
       } else {
         resultado.innerHTML +=
-          "<br>Falta " + tempoFaltando() + " dia para o seu aniversário.";
+          "<br>Falta <b>" + tempoFaltando() + "</b> dia para o seu aniversário.";
       }
 
       for (let i = 0; i < tabela2.length; i++) {
@@ -875,7 +906,7 @@
           (bday.getMonth() == tabela2[i].data2.mes &&
             bday.getDate() <= tabela2[i].data2.dia)
         ) {
-          resultado.innerHTML += "<br>Seu signo é " + tabela2[i].signo + ".";
+          resultado.innerHTML += "<br>Seu signo é <b>" + tabela2[i].signo + "</b>.";
           break;
         }
       }
@@ -884,7 +915,7 @@
         if (bday >= tabela[i].data1 && bday <= tabela[i].data2) {
           //console.log("Seu signo chinês é " + tabela[i].signo);
           resultado.innerHTML +=
-            "<br>Seu signo chinês é " + tabela[i].signo + " ";
+            "<br>Seu signo chinês é <b>" + tabela[i].signo + "</b> ";
           switch (tabela[i].signo) {
             case "rato":
               resultado.innerHTML += "🐭";
