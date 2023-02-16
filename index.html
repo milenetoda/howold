@@ -25,6 +25,7 @@
 
       body {
         text-align: center;
+        padding-bottom: 150px;
       }
       input {
         width: 200px;
@@ -865,7 +866,7 @@
         meses +
         (meses == 1 ? "</b> mês e <b>" : "</b> meses e <b>") +
         diasFinal +
-        (diasFinal == 1 ? "</b> dia." : "</b> dias.");
+        (diasFinal == 1 ? "</b> dia" : "</b> dias");
 
       var segundos = Math.floor((today - bday) / 1000);
       var segundosString = segundos.toString();
@@ -881,22 +882,22 @@
       }
 
       resultado.innerHTML +=
-        "<br>Você tem <b>" + contador_mes + "</b> meses de vida.";
+        "<br>Você tem <b>" + contador_mes + "</b> meses de vida";
 
       resultado.innerHTML +=
-        "<br>Você tem <b>" + Math.floor(dias) + "</b> dias de vida.";
+        "<br>Você tem <b>" + Math.floor(dias) + "</b> dias de vida";
 
       resultado.innerHTML +=
-        "<br>Você tem <b>" + segundosFinal + "</b> segundos de vida.";
+        "<br>Você tem <b>" + segundosFinal + "</b> segundos de vida";
 
-      resultado.innerHTML += "<br>Você nasceu em " + calculadiadasemana() + ".";
+      resultado.innerHTML += "<br>Você nasceu em " + calculadiadasemana() + "";
 
       if (tempoFaltando() != 1) {
         resultado.innerHTML +=
-          "<br>Faltam <b>" + tempoFaltando() + "</b> dias para o seu aniversário.";
+          "<br>Faltam <b>" + tempoFaltando() + "</b> dias para o seu aniversário";
       } else {
         resultado.innerHTML +=
-          "<br>Falta <b>" + tempoFaltando() + "</b> dia para o seu aniversário.";
+          "<br>Falta <b>" + tempoFaltando() + "</b> dia para o seu aniversário";
       }
 
       for (let i = 0; i < tabela2.length; i++) {
@@ -906,7 +907,7 @@
           (bday.getMonth() == tabela2[i].data2.mes &&
             bday.getDate() <= tabela2[i].data2.dia)
         ) {
-          resultado.innerHTML += "<br>Seu signo é <b>" + tabela2[i].signo + "</b>.";
+          resultado.innerHTML += "<br>Seu signo é <b>" + tabela2[i].signo + "</b>";
           break;
         }
       }
@@ -957,7 +958,7 @@
           break;
         }
       }
-      resultado.innerHTML += ".";
+      //resultado.innerHTML += ".";
 
       var link =
         "https://pt.wikipedia.org/wiki/" +
